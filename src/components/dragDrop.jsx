@@ -143,7 +143,7 @@ function DragDrop() {
         </div>
           )}
           <hr />
-        <div className="flex gap-4 mt-4">
+        <div className="lg:flex gap-4 mt-4">
           <div className="inline-block overflow-hidden">
             <img
               key={newPos}
@@ -154,7 +154,7 @@ function DragDrop() {
             />
 
           </div>
-          <div className="grid grid-cols-4 gap-4">
+          <div className="lg:grid lg:grid-cols-4 gap-4">
             {list &&
               list.map((image, index) => (
                 <div
@@ -170,7 +170,7 @@ function DragDrop() {
                     <img
                       src={image.src}
                       alt={`Image ${image.id}`}
-                      className="w-[24rem] rounded-lg h-72 object-cover transform transition-all duration-300 hover:scale-105 hover:brightness-75"
+                      className="w-[24rem] my-1 lg:my-0 rounded-lg h-72 object-cover transform transition-all duration-300 hover:scale-105 hover:brightness-75"
                     />
                     {image.isSelected && (
                       <div className="absolute top-3 left-3 px-1 rounded bg-black text-white">
