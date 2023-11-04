@@ -68,3 +68,122 @@ const imagesData = [
         isFeature: false,
     },
 ];
+
+function DragDrop() {
+    const [list, setList] = useState(imagesData);
+    const [showDeleteButton, setShowDeleteButton] = useState(false);
+    const [selectedImageCount, setSelectedImageCount] = useState(0); 
+  
+    const dragItem = useRef();
+    const dragOverItem = useRef();
+  
+    const handleSelectImage = (imageId) => {
+      const updatedImages = list.map((image) => {
+        if (image.id === imageId) {
+          return { ...image, isSelected: !image.isSelected };
+        }
+        return image;
+      });
+      setList(updatedImages);
+  
+      const hasSelectedImages = updatedImages.some((image) => image.isSelected);
+      setShowDeleteButton(hasSelectedImages);
+  
+      // Update the selected image count
+      const count = updatedImages.filter((image) => image.isSelected).length;
+      setSelectedImageCount(count);
+    };
+  
+    const handleDeleteSelectedImages = () => {
+      const updatedImages = list.filter((image) => !image.isSelected);
+      setList(updatedImages);
+      setShowDeleteButton(false);
+      setSelectedImageCount(0); // Reset the selected image count
+    };
+  
+    const [newPos, setNewPos] = useState(1);
+  
+    const dragStart = (e, position) => {
+      dragItem.current = position;
+    };
+  
+    const dragEnter = (e, position) => {
+      dragOverItem.current = position;
+    };
+  
+    const [selectedImage, setSelectedImage] = useState(imagesData[0].src);
+  
+    const drop = (e) => {
+      const copyListItems = [...list];
+      const dragItemContent = copyListItems[dragItem.current];
+      copyListItems.splice(dragItem.current, 1);
+      copyListItems.splice(dragOverItem.current, 0, dragItemContent);
+      dragItem.current = null;
+      dragOverItem.current = null;
+      setList(copyListItems);
+    };
+  
+    const onDragOver = (e) => {
+      const copyListItems = [...list];
+      const dragItemContent = copyListItems[dragItem.current];
+      setSelectedImage(dragItemContent.src);
+    };
+  
+    return (
+      <div>
+          {showDeleteButton && (
+        <div className="navbar flex justify-between items-center">
+          <div className="counter text-xl font-semibold">{selectedImageCount} Files Selected</div>
+            <button
+              className="delete-button text-red-500 text-xl font-semibold mt-4 mb-4"
+              onClick={handleDeleteSelectedImages}
+            >
+              Delete Files
+            </button>
+        </div>
+          )}
+          <hr />
+        <div className="flex gap-4 mt-4">
+          <div className="inline-block overflow-hidden">
+            <img
+              key={newPos}
+              src={selectedImage}
+              alt={`Image`}
+              onDragOver={(event) => onDragOver(event)}
+              className="lg:w-[800px] rounded-lg lg:h-[600px] transform transition-all duration-300 hover:scale-105 hover:brightness-75 hover:rounded-lg"
+            />
+
+          </div>
+          <div className="grid grid-cols-4 gap-4">
+            {list &&
+              list.map((image, index) => (
+                <div
+                  className={`relative overflow-hidden rounded-lg`}
+                  onDragStart={(e) => dragStart(e, index)}
+                  onDragEnter={(e) => dragEnter(e, index)}
+                  onDragEnd={drop}
+                  key={index}
+                  draggable
+                  onClick={() => handleSelectImage(image.id)}
+                >
+                  <div>
+                    <img
+                      src={image.src}
+                      alt={`Image ${image.id}`}
+                      className="w-[24rem] rounded-lg h-72 object-cover transform transition-all duration-300 hover:scale-105 hover:brightness-75"
+                    />
+                    {image.isSelected && (
+                      <div className="absolute top-3 left-3 px-1 rounded bg-black text-white">
+                        ✓
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+  
+  export default DragDrop;
