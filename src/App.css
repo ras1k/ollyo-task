@@ -1,9 +1,9 @@
-#root {
+/* #root {
   max-width: 1600px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-}
+} */
 
 .logo {
   height: 6em;
@@ -39,4 +39,16 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.gallery-img{
+  position: relative;
+  border: 1.5px solid rgb(194, 194, 194);
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.hr1{
+  border: 1px solid rgba(25, 24, 24, 0.456);
 }

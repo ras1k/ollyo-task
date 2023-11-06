@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import '../App.css'
 import img1 from '../assets/images/images (1).jpeg'
 import img2 from '../assets/images/images (2).jpeg'
 import img3 from '../assets/images/images (3).jpeg'
@@ -143,7 +144,7 @@ function DragDrop() {
           </button>
         </div>
       )}
-      <hr />
+      <hr className="hr1"/>
       <div className="lg:flex gap-4 mt-4">
         <div className="inline-block overflow-hidden">
           <img
@@ -151,7 +152,7 @@ function DragDrop() {
             src={selectedImage}
             alt={`Image`}
             onDragOver={(event) => onDragOver(event)}
-            className="lg:w-[800px] rounded-lg lg:h-[600px] transform transition-all duration-300 hover:scale-105 hover:brightness-75 hover:rounded-lg"
+            className="gallery-img bg-opacity-60 lg:w-[800px] rounded-lg lg:h-[600px] transform transition-all duration-300 hover:scale-105 hover:brightness-75 hover:rounded-lg"
           />
 
         </div>
@@ -171,7 +172,7 @@ function DragDrop() {
                   <img
                     src={image.src}
                     alt={`Image ${image.id}`}
-                    className="lg:w-[24rem] rounded-lg lg:h-72 object-cover transform transition-all duration-300 hover:scale-105 hover:brightness-75"
+                    className="gallery-img lg:w-[24rem] rounded-lg lg:h-72 object-cover transform transition-all duration-300 hover:scale-105 hover:brightness-75"
                   />
                   
                   {image.isSelected && (
