@@ -144,7 +144,7 @@ function DragDrop() {
           </button>
         </div>
       )}
-      <hr className="hr1"/>
+      <hr className="hr1" />
       <div className="lg:flex gap-4 mt-4">
         <div className="inline-block overflow-hidden">
           <img
@@ -174,19 +174,18 @@ function DragDrop() {
                     alt={`Image ${image.id}`}
                     className="gallery-img lg:w-[24rem] rounded-lg lg:h-72 object-cover transform transition-all duration-300 hover:scale-105 hover:brightness-75"
                   />
-                  
+
                   {image.isSelected && (
                     <div className="absolute top-3 left-3 px-1 rounded bg-black text-white">
                       ✓
                     </div>
                   )}
-                  
+
                 </div>
               </div>
-              
+
             ))}
-            <ImageUpload
-                    ></ImageUpload>
+          <ImageUpload />
         </div>
       </div>
     </div>
