@@ -134,17 +134,20 @@ function DragDrop() {
   return (
     <div>
       {showDeleteButton && (
-        <div className="navbar flex justify-between items-center">
-          <div className="counter text-xl font-semibold">{selectedImageCount} Files Selected</div>
-          <button
-            className="delete-button text-red-500 text-xl font-semibold mt-4 mb-4"
-            onClick={handleDeleteSelectedImages}
-          >
-            Delete Files
-          </button>
+        <div>
+          <div className="navbar flex justify-between items-center">
+            <div className="counter text-xl font-semibold">{selectedImageCount} Files Selected</div>
+            <button
+              className="delete-button text-red-500 text-xl font-semibold mt-4 mb-4"
+              onClick={handleDeleteSelectedImages}
+            >
+              Delete Files
+            </button>
+          </div>
+          <hr className="hr1" />
         </div>
       )}
-      <hr className="hr1" />
+
       <div className="lg:flex gap-4 mt-4">
         <div className="inline-block overflow-hidden">
           <img
